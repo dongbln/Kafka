@@ -10,12 +10,18 @@ If you want to use Kafka with Scala, you must make sure the version of your Scal
 6. Make DIR for logs of Kafka  for e.g., two Kafka brokers in the same machine ```mkdir kafka-log1 ```, ``` mkdir kafka-log2 ```
 7. Configure Kafka ``` vi config/server.properties ```
 8. Make sure broker.id is unique
-9. Specify the log path in the log section e.g., ```log.dirs=~/dev/myKafka/kafka-log1/kafka-logs ```
+9. Specify the log path in the log section e.g., ```log.dirs=~/dev/myKafka/kafka-log1```
 10. Specify your Zookeeper url if you have already installed on your organization
 11. Save the config and quit
 12. Start Zookeeper (Do not do this in production) ```bin/zookeeper-server-start.sh config/zookeeper.properties  & ```
-13. Start Kafka Broker 1 ```bin/kafka-server-start.sh config/server.properties & ```
-14. 
+13. Start the Kafka Broker 1 ```bin/kafka-server-start.sh config/server.properties & ```
+14. Make a copy of the first server properties for the second broker ```cp config/server.properties  config/server2.properties ```
+15. vi config/server2.properties
+16. Change the ```broker.id=1```, the port to ```port=9091``` and change the log dir to e.g., ```log.dirs=~/dev/myKafka/kafka-log2 ```
+17. We do not need to change the Zookeeper config because both brokers talk to the same Zookeeper
+16. Start the Kafka broker 2 ```bin/kafka-server-start.sh config/server2.properties & ```
+
+
 
 
 
