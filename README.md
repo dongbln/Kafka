@@ -20,6 +20,13 @@ If you want to use Kafka with Scala, you must make sure the version of your Scal
 16. Change the ```broker.id=1```, the port to ```port=9091``` and change the log dir to e.g., ```log.dirs=~/dev/myKafka/kafka-log2 ```
 17. We do not need to change the Zookeeper config because both brokers talk to the same Zookeeper
 16. Start the Kafka broker 2 ```bin/kafka-server-start.sh config/server2.properties & ```
+17. See the result ```ps -ef | grep kafka ```
+
+## Create Topics
+1. With two replication--factor because we have two brokers ```bin/kafka-topics.sh --zookeeper localhost:2181 --create --topic myfirstTopic --partition 2 --replication-factor 2 ```
+2. 
+
+
 
 
 
